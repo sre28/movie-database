@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  </head>  
+  <body>
+    <center>
+      <br>
+      <font size="+2" color=0000CC> Search Page </font>
+      <br><br>
+    </center>
+    <hr>
+    
+      {% for movie in movies %}
+      <div class="row">
+        <blockquote>{{ movie.name }}, {{ movie.director }}, {{ movie.actor }}, {{ movie.actor2 }}, {{ movie.year }}, {{ movie.duration }}</blockquote>
+      </div>
+      {% endfor %}
+    	{%if flag == 0 %}
+	<blockquote>Error: Enter atleast one field</blockquote>
+	{% endif %}
+	{%if flag != 0 and flag2 == 0 %}
+	<blockquote>No movie matched your search</blockquote>
+	{% endif %}
+    <center>
+    <form action="/search?category_name={{genre_name}}" method="post">
+      <div>
+	<label for="title">Title:</label>
+	<input type="text" name="name" /> </div>
+	<label for="director">Director:</label>
+	<input type="text" name="director" /> </div>
+	<br>
+	<label for="actor">Main actor:</label>
+	<input type="text" name="actor" /> </div>
+	<br>
+	<label for="year">Year of release:</label>
+	<input type="text" name="year" /> </div>
+	<br>
+      <div class="button"><button type="submit">Search</button></div>
+    </form>
+    </center>
+
+    <hr>
+
+    <form action="/search" method="post">Category:
+      <input value="{{genre_name}}" name="genre_name">
+      <button type="submit">Switch</button>
+    </form>
+  <br><br>
+  <center>
+    <a href=.> Return to main page </a>
+  </center>
+
+  </body>
+</html>
+
